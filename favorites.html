@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/home.css"> <!-- Reuse the same CSS file -->
+    <title>Favorites</title>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./dashboard.html">Dashboard</a></li>
+            <li><a href="./signup.html">Sign Up</a></li>
+            <li><a href="./login.html">Login</a></li>
+            <li><a href="./favorites.html">Favorites</a></li>
+            <li><a href="./about.html">About Us</a></li>
+        </ul>
+    </nav>
+    <!-- Search Bar Form -->
+    <form class="search-bar" action="/search" method="GET">
+        <input type="text" name="query" placeholder="Search for houses...">
+        <button type="submit">Search</button>
+    </form>
+</header>
+<main>
+
+    <div class="container">
+        <!-- Filter Pane (Column 1) -->
+        <div class="column1">
+            <h2>Filter Options</h2>
+            <form class="filter-form">
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" placeholder="Enter location">
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category">
+                        <option value="houses">Homes</option>
+                        <option value="apartments">Apartments</option>
+                        <option value="shops">Shops/Stores spaces</option>
+                        <option value="lodges">Lodges/Motel</option>
+                        <option value="hostels">Hostels</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priceMin">Price Min:</label>
+                    <input type="number" id="priceMin" name="priceMin" placeholder="Min price">
+                </div>
+                <div class="form-group">
+                    <label for="priceMax">Price Max:</label>
+                    <input type="number" id="priceMax" name="priceMax" placeholder="Max price">
+                </div>
+                <div class="form-group">
+                    <label>Amenities:</label>
+                    <div class="amenities-grid">
+                        <div class="amenity">
+                            <input type="checkbox" id="wifi" name="amenities" value="wifi">
+                            <label for="wifi">WiFi</label>
+                        </div>
+                        <div class="amenity">
+                            <input type="checkbox" id="parking" name="amenities" value="parking">
+                            <label for="parking">Parking Lot</label>
+                        </div>
+                        <div class="amenity">
+                            <input type="checkbox" id="gym" name="amenities" value="gym">
+                            <label for="gym">Gym</label>
+                        </div>
+                        <div class="amenity">
+                            <input type="checkbox" id="pool" name="amenities" value="pool">
+                            <label for="pool">Pool</label>
+                        </div>
+                        <div class="amenity">
+                            <input type="checkbox" id="gardens" name="amenities" value="Gardens">
+                            <label for="Gardens">Gardens</label>
+                        </div>
+                        <div class="amenity">
+                            <input type="checkbox" id="water" name="amenities" value="water">
+                            <label for="water">Water</label>
+                        </div>
+                        <div class="amenity">
+                            <input type="checkbox" id="electricity" name="amenities" value="electricity">
+                            <label for="electricity">Electricity</label>
+                        </div>
+                        <div class="amenity">
+                            <input type="checkbox" id="shopping" name="amenities" value="shopping">
+                            <label for="shopping">Shopping</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="filter-button">Apply Filters</button>
+            </form>
+        </div>
+
+        <!-- Favorites Listings (Column 2) -->
+        <div class="column2">
+            <h2 style="text-align: center; color: orange; font-weight: bold; font-family: sans-serif;">
+                Your Favorites
+            </h2>
+            <section class="featured-listings">
+                <div class="listing-container" id="favorites-container">
+                    <!-- Favorites will be dynamically inserted here -->
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2023 Your Company. All rights reserved.</p>
+</footer>
+
+<script>
+    // JavaScript to load favorites from localStorage
+    document.addEventListener("DOMContentLoaded", function () {
+        const favoritesContainer = document.getElementById("favorites-container");
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        if (favorites.length === 0) {
+            favoritesContainer.innerHTML = "<p>No favorites added yet.</p>";
+        } else {
+            favorites.forEach(listing => {
+                const listingHTML = `
+                        <article class="listing">
+                            <h3>${listing.title}</h3>
+                            <p>${listing.details}</p>
+                            <a href="${listing.link}" class="details-button">View Details</a>
+                            <div class="button-group">
+                                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                                <button class="favorite-btn" onclick="removeFromFavorites(this)">❌ Remove</button>
+                            </div>
+                        </article>
+                    `;
+                favoritesContainer.insertAdjacentHTML("beforeend", listingHTML);
+            });
+        }
+    });
+
+    // Function to remove a listing from favorites
+    function removeFromFavorites(button) {
+        const listing = button.closest(".listing");
+        const title = listing.querySelector("h3").innerText;
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        // Remove the listing from favorites
+        const updatedFavorites = favorites.filter(item => item.title !== title);
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+        // Remove the listing from the DOM
+        listing.remove();
+
+        // Show a message if no favorites are left
+        const favoritesContainer = document.getElementById("favorites-container");
+        if (updatedFavorites.length === 0) {
+            favoritesContainer.innerHTML = "<p>No favorites added yet.</p>";
+        }
+    }
+</script>
+</body>
+</html>

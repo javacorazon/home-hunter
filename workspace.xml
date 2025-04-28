@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4b4c7521-8279-4bfc-9487-fa9b4004c1c7" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2ukg9iloO8rqQhVb1xAXQ7F8XMl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HomeHunterXApplication.executor": "Run",
+    "JUnit.HomeHunterXApplicationTests.executor": "Run",
+    "JavaScript Debug.admindashboard.html.executor": "Run",
+    "JavaScript Debug.admindd.html (1).executor": "Run",
+    "JavaScript Debug.admindd.html.executor": "Run",
+    "JavaScript Debug.clientDashboard.html (1).executor": "Run",
+    "JavaScript Debug.clientDashboard.html.executor": "Run",
+    "JavaScript Debug.dashboard.html.executor": "Run",
+    "JavaScript Debug.estatemanagerdashboard.html (1).executor": "Run",
+    "JavaScript Debug.estatemanagerdashboard.html.executor": "Run",
+    "JavaScript Debug.favorites.html.executor": "Run",
+    "JavaScript Debug.home.html.executor": "Run",
+    "JavaScript Debug.login.html.executor": "Run",
+    "JavaScript Debug.signup.html.executor": "Run",
+    "JavaScript Debug.viewdetails.html.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.HomeHunterXApplication.executor": "Run",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Admin/Freaky/HomeHunter",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Freaky\HomeHunterX\src\main\resources\static" />
+      <recent name="C:\Users\Admin\Freaky\HomeHunterX\src\main\resources\static\cssimaging" />
+      <recent name="C:\Users\Admin\Freaky\HomeHunterX\src\main\resources\templates" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.homehunterx.config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.clientDashboard.html">
+    <configuration name="HomeHunterXApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HomeHunterX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com" />
+      <option name="MAIN_CLASS_NAME" value="com.HomeHunterXApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="admindashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/HomeHunterX/templates/admindashboard.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="admindd.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/HomeHunterX/templates/admindd.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="clientDashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/HomeHunter/HomeHunterX/templates/clientDashboard.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="viewdetails.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/HomeHunterX/templates/viewdetails.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="HomeHunterXApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="HomeHunterX" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.HomeHunterXApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.clientDashboard.html" />
+        <item itemvalue="JUnit.HomeHunterXApplicationTests" />
+        <item itemvalue="JavaScript Debug.viewdetails.html" />
+        <item itemvalue="JavaScript Debug.admindashboard.html" />
+        <item itemvalue="JavaScript Debug.admindd.html (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4b4c7521-8279-4bfc-9487-fa9b4004c1c7" name="Changes" comment="" />
+      <created>1742797842144</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742797842144</updated>
+      <workItem from="1742797843461" duration="7566000" />
+      <workItem from="1742974284451" duration="8648000" />
+      <workItem from="1743590981012" duration="3477000" />
+      <workItem from="1743596103674" duration="5305000" />
+      <workItem from="1744718492491" duration="154000" />
+      <workItem from="1744874110643" duration="1033000" />
+      <workItem from="1744970453739" duration="1644000" />
+      <workItem from="1744972782876" duration="1205000" />
+      <workItem from="1744974670007" duration="3182000" />
+      <workItem from="1744993338272" duration="13345000" />
+      <workItem from="1745022344948" duration="4184000" />
+      <workItem from="1745482063861" duration="6936000" />
+      <workItem from="1745516328409" duration="2612000" />
+      <workItem from="1745568630116" duration="927000" />
+      <workItem from="1745662683089" duration="7449000" />
+      <workItem from="1745684878603" duration="6333000" />
+      <workItem from="1745765207405" duration="3962000" />
+      <workItem from="1745829475433" duration="9675000" />
+      <workItem from="1745845213054" duration="543000" />
+      <workItem from="1745847020580" duration="487000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HomeHunterX$favorites_html.dat" NAME="favorites.html Coverage Results" MODIFIED="1742979585245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

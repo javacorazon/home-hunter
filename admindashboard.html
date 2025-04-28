@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/home.css" />
+  <title>Admin Dashboard</title>
+  <style>
+    .dashboard-header {
+      background-color: #e2cd13;
+      color: rgb(42, 12, 124);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .admin-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .admin-action-btn {
+      background-color: #8a0a0a;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .admin-action-btn:hover {
+      background-color: #ff6b7a;
+      transform: translateY(-2px);
+    }
+
+    .admin-section {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 25px;
+    }
+
+    .admin-section h2 {
+      color: #320e6d;
+      text-align: center;
+      border-bottom: 2px solid rgba(50,14,109,0.2);
+      padding-bottom: 6px;
+      margin-bottom: 15px;
+    }
+
+    .admin-table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    .admin-table th, .admin-table td {
+      padding: 12px 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    .admin-table th {
+      background-color: #e2cd13;
+      color: #2a0c7c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .admin-section button,
+    .details-button {
+      background-color: #8a0a0a;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 4px 3px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .admin-section button:hover,
+    .details-button:hover {
+      background-color: #ff6b7a;
+      transform: translateY(-2px);
+    }
+
+    .details-button {
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .admin-form input,
+    .admin-form select {
+      width: 100%;
+      padding: 8px 10px;
+      margin: 6px 0 14px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .column1 {
+      flex: 1;
+      min-width: 100px;
+      padding: 15px;
+    }
+
+    .column2 {
+      flex: 2;
+      min-width: 250px;
+    }
+
+    .column3 {
+      flex: 1;
+      min-width: 100px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      .container {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./clientDashboard.html">Dashboard</a></li>
+      <li><a href="./favorites.html">Favorites</a></li>
+      <li><a href="./bilboard.html">Bilboard</a></li>
+      <li><a href="./about.html">About Us</a></li>
+    </ul>
+  </nav>
+  <form class="search-bar" action="/search" method="GET">
+    <input type="text" name="query" placeholder="Search for listings..." />
+    <button type="submit">Search</button>
+  </form>
+</header>
+
+  <main>
+    <div class="container">
+
+      <!-- Column 1: Admin Actions -->
+      <div class="column1">
+        <div class="dashboard-header">
+          <h1>Welcome Back, Admin!</h1>
+          <p>Manage users, listings, districts and system activities</p>
+        </div>
+
+        <div class="admin-actions">
+          <a onclick="showForm('addUser')" class="admin-action-btn">Add User</a>
+          <a onclick="showForm('approveUsers')" class="admin-action-btn">Approve Users</a>
+          <a onclick="showForm('manageListings')" class="admin-action-btn">Manage Listings</a>
+          <a onclick="showForm('editDistricts')" class="admin-action-btn">View District Codes</a>
+          <a onclick="showForm('userPermissions')" class="admin-action-btn">User Permissions</a>
+          <a onclick="showForm('systemNotifications')" class="admin-action-btn">System Notifications</a>
+        </div>
+      </div>
+
+      <!-- Column 2: Dynamic Content + Recent Users -->
+      <div class="column2">
+
+        <div class="admin-section hidden" id="addUser">
+          <h2>Add New User</h2>
+          <form action="/admin/add-user" method="POST" class="admin-form">
+            <label>Username:</label>
+            <input type="text" name="username" required />
+            <label>Email:</label>
+            <input type="email" name="email" required />
+            <label>Password:</label>
+            <input type="password" name="password" required />
+            <label>Role:</label>
+            <select name="role" required>
+              <option value="Tenant">Tenant</option>
+              <option value="Estate Manager">Estate Manager</option>
+              <option value="Admin">Admin</option>
+            </select>
+            <button type="submit">Create User</button>
+          </form>
+        </div>
+
+        <div class="admin-section hidden" id="approveUsers">
+          <h2>Approve Users</h2>
+          <table class="admin-table">
+            <thead><tr><th>User</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>mary_manager</td>
+                <td><button>Confirm</button><button>Dispatch</button><button>Suspend</button></td>
+              </tr>
+              <tr><td>alex_client</td>
+                <td><button>Confirm</button><button>Dispatch</button><button>Suspend</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admin-section hidden" id="manageListings">
+          <h2>Manage Listings</h2>
+          <table class="admin-table">
+            <thead><tr><th>Listing ID</th><th>Title</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>#134</td>
+                <td>2 Bedroom Apartment</td>
+                <td>Pending</td>
+                <td><button>Approve</button><button>Delete</button><button>Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <button>Set Listing ID Format</button>
+          <button>Reset Listing ID</button>
+        </div>
+
+        <div class="admin-section hidden" id="editDistricts">
+          <h2>District Codes</h2>
+          <button>Add District</button>
+          <table class="admin-table">
+            <thead><tr><th>District</th><th>Code</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>Central Market</td><td>CMK-001</td>
+                <td><button>Edit</button><button>Delete</button></td>
+              </tr>
+              <tr><td>Green Estate</td><td>GRN-005</td>
+                <td><button>Edit</button><button>Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admin-section hidden" id="userPermissions">
+          <h2>User Permission Requests</h2>
+          <table class="admin-table">
+            <thead><tr><th>User</th><th>Requested Role</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>john_client</td><td>Estate Manager</td>
+                <td><button>Confirm</button><button>Suspend</button><button>Bounce Request</button></td>
+              </tr>
+              <tr><td>lucy_client</td><td>Landlord</td>
+                <td><button>Confirm</button><button>Suspend</button><button>Bounce Request</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admin-section hidden" id="systemNotifications">
+          <h2>System Notifications</h2>
+          <div class="notification-container">
+            <div class="notification">
+              <p>User "mary_manager" requested approval</p>
+              <a href="/admin/approve-users" class="details-button">Approve Now</a>
+            </div>
+            <div class="notification">
+              <p>Listing #134 pending review</p>
+              <a href="/admin/manage-listings" class="details-button">Review Listing</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <h2>Recent Users</h2>
+          <table class="admin-table">
+            <thead>
+              <tr><th>User ID</th><th>Username</th><th>Email</th><th>Status</th><th>Role</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>#001</td><td>john_tenant</td><td>john@example.com</td><td>Approved</td><td>Tenant</td></tr>
+              <tr><td>#002</td><td>mary_manager</td><td>mary@estate.com</td><td>Pending</td><td>Estate Manager</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- Column 3: Activity Log -->
+      <div class="column3">
+        <div class="admin-section">
+          <h2>Admin Activity Log</h2>
+          <div class="activity-log">
+            <p>✔ Approved user "mary_manager"</p>
+            <p>✖ Deleted listing ID #130</p>
+            <p>✔ Updated district code CMK-002</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Home Hunter Admin Panel. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showForm(formId) {
+      const forms = [
+        'addUser', 'approveUsers', 'manageListings',
+        'editDistricts', 'userPermissions', 'systemNotifications'
+      ];
+      forms.forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(formId).classList.remove('hidden');
+      window.scrollTo({ top: 200, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

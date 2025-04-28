@@ -1,0 +1,424 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <h1 class = "header-title">Home hunter</h1>  
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/home.css">
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./dashboard.html">Dashboard</a></li>
+                <li><a href="./signup.html">Sign Up</a></li>
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./favorites.html">Favorites</a></li>
+                <li><a href="./about.html">About Us</a></li>
+            </ul>
+        </nav>
+        <!-- Search Bar Form -->
+        <form class="search-bar" action="/search" method="GET">
+            <input type="text" name="query" placeholder="Search for houses...">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    <main>
+        <div class="container">
+            <div class="column1">
+                <h2>Filter Options</h2>
+                <form class="filter-form">
+                    <div class="form-group">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" placeholder="Enter location">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category">
+                            <option value="houses">Homes</option>
+                            <option value="apartments">Apartments</option>
+                            <option value="shops">Shops/Stores spaces</option>
+                            <option value="lodges">Lodges/Motel</option>
+                            <option value="hostels">Hostels</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceMin">Price Min:</label>
+                        <input type="number" id="priceMin" name="priceMin" placeholder="Min price">
+                    </div>
+                    <div class="form-group">
+                        <label for="priceMax">Price Max:</label>
+                        <input type="number" id="priceMax" name="priceMax" placeholder="Max price">
+                    </div>
+                    <div class="form-group">
+                        <label>Amenities:</label>
+                        <div class="amenities-grid">
+                            <div class="amenity">
+                                <input type="checkbox" id="wifi" name="amenities" value="wifi">
+                                <label for="wifi">WiFi</label>
+                            </div>
+                            <div class="amenity">
+                                <input type="checkbox" id="parking" name="amenities" value="parking">
+                                <label for="parking">Parking Lot</label>
+                            </div>
+                            <div class="amenity">
+                                <input type="checkbox" id="gym" name="amenities" value="gym">
+                                <label for="gym">Gym</label>
+                            </div>
+                            <div class="amenity">
+                                <input type="checkbox" id="pool" name="amenities" value="pool">
+                                <label for="pool">Pool</label>
+                            </div>
+                            <div class="amenity">
+                                <input type="checkbox" id="gardens" name="amenities" value="Gardens">
+                                <label for="Gardens">Gardens</label>
+                                </div>
+                            <div class="amenity">
+                                <input type="checkbox" id="water" name="amenities" value="water">
+                                <label for="water">Water</label>
+                            </div>
+                            <div class="amenity">
+                                <input type="checkbox" id="electricity" name="amenities" value="electricity">
+                                <label for="electricity">Electricity</label>
+                            </div>
+                            <div class="amenity">
+                                <input type="checkbox" id="shopping" name="amenities" value="shopping">
+                                <label for="shopping">Shopping</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="filter-button">Apply Filters</button>
+                </form>
+            </div>            <div class="column2">
+
+                <h2 style="text-align: center; color: orange; font-weight: bold; font-family: sans-serif;">
+                    Featured Listings
+                </h2>
+                
+
+               <section class="featured-listings">
+    <h2>Featured Homes</h2>
+    <div class="listing-container">
+        <article class="listing">
+            <h3>Beautiful Family Home</h3>
+            <p>4 Bedrooms | 3 Bathrooms | $450,000</p>
+            <a href="/listing/1" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+        <article class="listing">
+            <h3>Modern Apartment</h3>
+            <p>2 Bedrooms | 2 Bathrooms | $300,000</p>
+            <a href="/listing/2" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+        <article class="listing">
+            <h3>Luxury Condo</h3>
+            <p>2 Bedrooms | 2 Bathrooms | $500,000</p>
+            <a href="/listing/4" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+    </div>
+
+    <h2>Featured Apartments</h2>
+    <div class="listing-container">
+        <article class="listing">
+            <h3>Stylish City Apartment</h3>
+            <p>1 Bedroom | 1 Bathroom | $220,000</p>
+            <a href="/listing/5" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+        <article class="listing">
+            <h3>Spacious Loft</h3>
+            <p>2 Bedrooms | 2 Bathrooms | $280,000</p>
+            <a href="/listing/6" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+    </div>
+
+    <h2>Featured Shops & Store Spaces</h2>
+    <div class="listing-container">
+        <article class="listing">
+            <h3>Retail Storefront</h3>
+            <p>500 sqft | $150,000</p>
+            <a href="/listing/7" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        
+<article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+    <div class="button-group">
+        <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+        <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+    </div>
+        </article>
+
+
+        <article class="listing">
+            <h3>Shopping Plaza Unit</h3>
+            <p>800 sqft | $250,000</p>
+            <a href="/listing/8" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+    </div>
+
+    <h2>Featured Lodges & Motels</h2>
+    <div class="listing-container">
+        <article class="listing">
+            <h3>Cozy Mountain Lodge</h3>
+            <p>10 Rooms | $1,200,000</p>
+            <a href="/listing/9" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+    </div>
+
+    <h2>Featured Hostels</h2>
+    <div class="listing-container">
+        <article class="listing">
+            <h3>Student Hostel</h3>
+            <p>50 Beds | $500,000</p>
+            <a href="/listing/11" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+
+        <article class="listing">
+            <h3>Backpacker’s Haven</h3>
+            <p>30 Beds | $350,000</p>
+            <a href="/listing/12" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+        <article class="listing">
+            <h3>Cozy Townhouse</h3>
+            <p>3 Bedrooms | 2 Bathrooms | $350,000</p>
+            <a href="/listing/3" class="details-button">View Details</a>
+            <div class="button-group">
+                <button class="like-btn" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="favorite-btn" onclick="addToFavorites(this)">⭐ Add to Favorites</button>
+            </div>
+        </article>
+    </div>
+    
+
+</section>
+            <div class="column3">
+                <h2>Contact Us</h2>
+                <p>Email: contact@example.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <h2>About Us</h2>
+                <p>We are dedicated to providing the best housing options.</p>
+                <h2>Login</h2>
+                <p><a href="#login">Login here</a></p>
+                <h2>SignUp</h2>
+                <p><a href="#signup">SignUp here</a></p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>

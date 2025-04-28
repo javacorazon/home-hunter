@@ -1,0 +1,464 @@
+# Estate Manager Dashboard
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../static/home2.css">
+  <title>Estate Manager Dashboard</title>
+  <style>
+    body {
+      background-image: url('/static/imagehb1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    header {
+      background: #320e6d;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    header nav ul li {
+      margin-right: 20px;
+    }
+
+    header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: opacity 0.3s ease;
+    }
+
+    header nav ul li a:hover {
+      opacity: 0.7;
+    }
+
+    .search-bar input {
+      padding: 7px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .search-bar button {
+      background-color: #048134;
+      border: none;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 5px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .column1, .column2, .column3 {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+
+    .column1 { flex: 1; }
+    .column2 { flex: 2; display: flex; flex-direction: column; justify-content: space-between; }
+    .column3 { flex: 1; }
+
+    .dashboard-header {
+      background-color: #e2cd13;
+      color: rgb(42, 12, 124);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .tenant-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .tenant-action-btn {
+      background-color: #8a0a0a;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .tenant-action-btn:hover {
+      background-color: #ff6b7a;
+      transform: translateY(-2px);
+    }
+
+    .tenant-section h2 {
+      border-bottom: 2px solid rgba(50,14,109,0.2);
+      padding-bottom: 6px;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #320e6d;
+    }
+
+    .details-button {
+      background-color: #8a0a0a;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 4px 3px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .details-button:hover {
+      background-color: #ff6b7a;
+      transform: translateY(-2px);
+    }
+
+    .account-settings ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    .account-settings li {
+      margin: 10px 0;
+    }
+
+    .account-settings a {
+      color: rgb(42, 12, 124);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .account-settings a:hover {
+      text-decoration: underline;
+    }
+
+    .activity-log p {
+      margin: 8px 0;
+      padding: 8px;
+      background: rgba(50, 14, 109, 0.05);
+      border-radius: 5px;
+    }
+
+    #response-section {
+      padding: 15px;
+      border-radius: 8px;
+      background: #f9f9f9;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin: 20px 0;
+      flex-grow: 1;
+    }
+
+    .profile-pic {
+      cursor: pointer;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    @media screen and (max-width: 1200px) {
+      .container {
+        flex-direction: column;
+      }
+      .column2 {
+        justify-content: flex-start;
+      }
+    }
+    .styled-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    .styled-input:focus {
+      border-color: #4e89ff;
+      outline: none;
+      background-color: #eef4ff;
+    }
+
+  </style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="./home2.html">Home</a></li>
+      <li><a href="./dashboard_estate_manager.html">Dashboard</a></li>
+      <li><a href="./signup.html">Sign Up</a></li>
+      <li><a href="./login.html">Login</a></li>
+      <li><a href="./favorites.html">Favorites</a></li>
+      <li><a href="./about.html">About Us</a></li>
+    </ul>
+  </nav>
+  <form class="search-bar" action="/search" method="GET">
+    <input type="text" name="query" placeholder="Search for listings..." />
+    <button type="submit">Search</button>
+  </form>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="column1">
+      <div class="dashboard-header">
+        <h1>Welcome Back, Estate Manager!</h1>
+        <p>Manage your listings and activities</p>
+      </div>
+
+      <div class="tenant-actions">
+        <button class="tenant-action-btn" onclick="showFavorites()">Your Favorites</button>
+        <button class="tenant-action-btn" onclick="showInquiries()">Inquiries for You</button>
+        <button class="tenant-action-btn" onclick="showReviews()">Reviews for You</button>
+        <button class="tenant-action-btn" onclick="addListing()">Add Listing</button>
+        <button class="tenant-action-btn" onclick="manageListings()">Manage Listings</button>
+        <button class="tenant-action-btn" onclick="viewInquiries()">View Inquiries</button>
+        <button class="tenant-action-btn" onclick="viewRatings()">Ratings & Reviews</button>
+      </div>
+
+      <div class="account-settings tenant-section">
+        <h2>Account Settings</h2>
+        <ul>
+          <li><a href="#" onclick="showProfile()">View Profile</a></li>
+          <li><a href="#" onclick="editProfile()">Edit Profile</a></li>
+          <li><a href="#" onclick="showChangePassword()">Change Password</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column2">
+      <div id="response-section">
+        <h3>Welcome to your Dashboard</h3>
+        <p>Select an action from the left to view more details.</p>
+      </div>
+    </div>
+
+    <div class="column3 tenant-section">
+      <h2>Recent Activity</h2>
+      <div class="activity-log">
+        <p>Inquired about: Modern Downtown Apartment</p>
+        <p>Favorite Added: Cozy Studio Near Beach</p>
+        <p>Review Posted: Great Apartment!</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Replace only the <script> section in your original file with this full update -->
+<script>
+  function showFavorites() {
+    document.getElementById("response-section").innerHTML = "<h3>Your Favorite Listings</h3><p>Here are your favorite properties...</p>";
+  }
+
+  function showInquiries() {
+    document.getElementById("response-section").innerHTML = "<h3>Your Inquiries</h3><p>Here are the properties you've inquired about...</p>";
+  }
+
+  function showReviews() {
+    document.getElementById("response-section").innerHTML = "<h3>Your Reviews</h3><p>Here are the reviews you've left...</p>";
+  }
+
+  function showNotifications() {
+    document.getElementById("response-section").innerHTML = "<h3>Recent Notifications</h3><p>Here are your recent notifications...</p>";
+  }
+
+  function addListing() {
+    document.getElementById("response-section").innerHTML = `
+    <h3 style="color: #2a2a2a;">Add New Listing</h3>
+    <form enctype="multipart/form-data" style="background: #f9f9ff; padding: 20px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); max-width: 700px; margin: auto;">
+      <div style="display: flex; flex-direction: column; gap: 15px;">
+        <div>
+          <label>Estate Name:</label><br>
+          <input type="text" class="styled-input" required>
+        </div>
+        <div>
+          <label>Location:</label><br>
+          <input type="text" class="styled-input" required>
+        </div>
+        <div>
+          <label>Price (UGX):</label><br>
+          <input type="number" class="styled-input" required>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <div style="flex: 1;">
+            <label>Bedrooms:</label><br>
+            <input type="number" class="styled-input">
+          </div>
+          <div style="flex: 1;">
+            <label>Living Rooms:</label><br>
+            <input type="number" class="styled-input">
+          </div>
+          <div style="flex: 1;">
+            <label>Washrooms:</label><br>
+            <input type="number" class="styled-input">
+          </div>
+        </div>
+        <div>
+          <label>Amenities:</label><br>
+          <textarea rows="3" class="styled-input" placeholder="WiFi, Water, Parking..."></textarea>
+        </div>
+        <div>
+          <label>Listing Category:</label><br>
+          <select class="styled-input" required>
+            <option value="">-- Select Category --</option>
+            <option>Hostel</option>
+            <option>Home</option>
+            <option>Lodge</option>
+            <option>Shop</option>
+            <option>Apartment</option>
+          </select>
+        </div>
+        <div>
+          <label>Transaction Status:</label><br>
+          <select class="styled-input" required>
+            <option value="">-- Select Status --</option>
+            <option>For Rent</option>
+            <option>For Hire</option>
+            <option>For Sale</option>
+          </select>
+        </div>
+        <div>
+          <label>Upload Media (Images/Videos):</label><br>
+          <input type="file" accept="image/*,video/*" multiple class="styled-input" id="media-upload">
+          <small>Recommended: 6MB - 40MB total</small>
+        </div>
+        <div>
+          <button type="button" onclick="captureLocation()" style="margin-top: 10px; background: #4e89ff; color: #fff; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer;">📍 Capture GPS Location</button>
+          <p id="gps-coordinates" style="color: #2b5b3c; margin-top: 5px;"></p>
+        </div>
+        <div style="text-align: right;">
+          <button type="submit" style="background: #2dce89; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;">Submit Listing</button>
+        </div>
+      </div>
+    </form>
+  `;
+  }
+
+
+  function captureLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const coords = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+        document.getElementById("gps-coordinates").innerText = coords;
+      }, () => {
+        document.getElementById("gps-coordinates").innerText = "Unable to retrieve location.";
+      });
+    } else {
+      document.getElementById("gps-coordinates").innerText = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function showChangePassword() {
+    document.getElementById("response-section").innerHTML = `
+      <h3>Change Password</h3>
+      <form>
+        <label>Old Password:</label><br><input type="password" required><br>
+        <label>New Password:</label><br><input type="password" required><br>
+        <label>Confirm New Password:</label><br><input type="password" required><br>
+        <button type="submit">Update Password</button>
+      </form>
+    `;
+  }
+
+  function showProfile() {
+    document.getElementById("response-section").innerHTML = `
+      <h3>Your Profile</h3>
+      <div style="text-align:center;">
+        <img src="/static/profile-pic.jpg" alt="Profile Picture" style="width: 150px; border-radius: 10px; cursor: pointer;" onclick="zoomProfilePic(this)">
+      </div>
+    `;
+  }
+
+  function zoomProfilePic(img) {
+    const modal = document.createElement("div");
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.backgroundColor = "rgba(0,0,0,0.8)";
+    modal.style.display = "flex";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
+    modal.style.zIndex = "9999";
+
+    const largeImg = document.createElement("img");
+    largeImg.src = img.src;
+    largeImg.style.maxWidth = "80%";
+    largeImg.style.maxHeight = "80%";
+    largeImg.style.borderRadius = "10px";
+    largeImg.style.boxShadow = "0 0 15px #fff";
+
+    modal.appendChild(largeImg);
+    modal.onclick = () => document.body.removeChild(modal);
+    document.body.appendChild(modal);
+  }
+
+  function editProfile() {
+    document.getElementById("response-section").innerHTML = "<h3>Edit Profile</h3><p>Edit your profile details here...</p>";
+  }
+
+  function manageListings() {
+    document.getElementById("response-section").innerHTML = `
+      <h3>Your Listings</h3>
+      <div>
+        <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 10px;">
+          <h4>Modern Downtown Apartment</h4>
+          <button class="details-button">Delete Listing</button>
+          <button class="details-button">Edit Listing</button>
+          <button class="details-button">View Details</button>
+          <button class="details-button">View Comments</button>
+          <button class="details-button">View Reviews</button>
+        </div>
+        <!-- Repeat for each listing -->
+      </div>
+    `;
+  }
+
+  function viewInquiries() {
+    document.getElementById("response-section").innerHTML = "<h3>Client Inquiries</h3><p>View all inquiries received here...</p>";
+  }
+
+  function viewRatings() {
+    document.getElementById("response-section").innerHTML = "<h3>Ratings & Reviews</h3><p>See how clients rate your listings...</p>";
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', Arial, sans-serif; /* Cute and modern font */
+    margin: 0;
+    padding: 0;
+    background-color: #44be0c; /* Light background */
+    background-image: linear-gradient(135deg, #ac46f0 0%, #a6df0c 100%); /* Soft gradient */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333; /* Dark text for contrast */
+}
+.header-title {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: yellow;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+body {
+    background-image: url('imagehb1.jpg');
+    background-size: cover;  /* Covers entire screen */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps image in place while scrolling */
+}
+
+
+
+header {
+    background-color: #060d56; /* Soft pink */
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+nav {
+    display: flex;
+    align-items: center; /* Vertically center the image and menu */
+    justify-content: center; /* Horizontally center the content */
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto; /* Center the nav container */
+}
+
+.header-image {
+    height: 50px; /* Adjust the height of the image */
+    margin-right: 20px; /* Space between image and menu items */
+    border-radius: 10px; /* Rounded corners for the image */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd3b6; /* Light orange on hover */
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Columns */
+.column1, .column2, .column3 {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.column1:hover, .column2:hover, .column3:hover {
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+}
+
+.column1 {
+    width: 8cm;
+}
+
+.column2 {
+    width: 20cm;
+}
+
+.column3 {
+    flex-grow: 1;
+}
+
+/* Listings Section */
+.listing-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.listing {
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.listing img {
+    max-width: 100%;
+    border-radius: 10px; /* Rounded corners for images */
+}
+
+.details-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #e2cd13; /* Yellow */
+    color: rgb(42, 12, 124); /* Dark purple */
+    text-decoration: none;
+    border-radius: 25px; /* Rounded button */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.details-button:hover {
+    background-color: #ff6b7a; /* Darker pink on hover */
+    transform: translateY(-2px); /* Lift on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #ff8b94; /* Soft pink */
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Rounded input */
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #ff8b94; /* Soft pink border on focus */
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e2cd13; /* Yellow */
+    color: rgb(42, 12, 124); /* Dark purple */
+    border: none;
+    border-radius: 25px; /* Rounded button */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #ff6b7a; /* Darker pink on hover */
+    transform: translateY(-2px); /* Lift on hover */
+}
+
+/* Filter Section */
+.column1 h2 {
+    font-size: 24px;
+    color: #320e6d; /* Dark purple */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px; /* Rounded inputs */
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #ff8b94; /* Soft pink border on focus */
+}
+
+.filter-button {
+    padding: 12px;
+    background-color: #e2cd13; /* Yellow */
+    color: rgb(42, 12, 124); /* Dark purple */
+    border: none;
+    border-radius: 25px; /* Rounded button */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #ff6b7a; /* Darker pink on hover */
+    transform: translateY(-2px); /* Lift on hover */
+}
+/* Listings Container with Background Image */
+.listing-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    background-image: url('image1.jpg'); /* Add your image here */
+    background-size: cover; /* Ensure the image covers the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    position: relative; /* For overlay */
+}
+
+/* Overlay to improve readability */
+.listing-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+     /* Semi-transparent white overlay */
+    border-radius: 15px; /* Match container's rounded corners */
+    z-index: 1; /* Ensure it's above the background image */
+}
+
+/* Ensure listings are above the overlay */
+.listing {
+    position: relative;
+    z-index: 2; /* Above the overlay */
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+     /* Semi-transparent white */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+/* Additional Styles for Dashboard */
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.notification {
+    /*background-color: rgba(255, 255, 255, 0.9);*/
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notification:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.activity-log {
+    /*background-color: rgba(255, 255, 255, 0.9);*/
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* Button Group Styles */
+.button-group {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px; /* Space above the button group */
+}
+
+.like-btn, .favorite-btn {
+    padding: 10px 15px; /* Adjust padding for sizing */
+    background-color: #e2cd13; /* Yellow background */
+    color: rgb(42, 12, 124); /* Dark purple text */
+    border: none; /* Remove border */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.like-btn:hover, .favorite-btn:hover {
+    background-color: #ff6b7a; /* Darker pink on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+/* Additional Styles for Dashboard */
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.notification {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notification:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.activity-log {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

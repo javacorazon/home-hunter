@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/home.css">
+  <title>Tenant Dashboard | Home Hunter</title>
+  <style>
+    /* Enhanced Dashboard Styles */
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 30px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Sidebar Styles */
+    .dashboard-sidebar {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+
+    .sidebar-header {
+      border-bottom: 2px solid #e2cd13;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-header h1 {
+      color: #320e6d;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-header p {
+      color: #666;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .profile-section {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(50, 14, 109, 0.1);
+    }
+
+
+    .profile-pic-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      border: 3px solid #e2cd13;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-pic-container:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-weight: 600;
+      color: #320e6d;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    /* Navigation Styles */
+    .nav-section {
+      margin-bottom: 30px;
+    }
+
+    .nav-section h2 {
+      color: #8a0a0a;
+      font-size: 16px;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(50, 14, 109, 0.1);
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nav-button {
+      background: white;
+      border: 1px solid #e2cd13;
+      color: #320e6d;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-button:hover {
+      background: #8a0a0a;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .nav-button i {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .account-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .account-links li {
+      margin-bottom: 12px;
+    }
+
+    .account-links a {
+      color: #320e6d;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+      padding: 8px 15px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .account-links a:hover {
+      background: rgba(138, 10, 10, 0.1);
+      color: #8a0a0a;
+      padding-left: 20px;
+    }
+
+    .upgrade-section {
+      background: white;
+      border: 2px dashed #8a0a0a;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .upgrade-section h3 {
+      color: #320e6d;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .upgrade-btn {
+      background: #8a0a0a;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .upgrade-btn:hover {
+      background: #6d0808;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Main Content Styles */
+    .dashboard-main {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .content-section {
+      margin-bottom: 40px;
+    }
+
+    .content-section h2 {
+      color: #320e6d;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2cd13;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .dashboard-container {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-sidebar {
+        position: static;
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .dashboard-sidebar,
+      .dashboard-main {
+        padding: 20px;
+      }
+    }
+  </style>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./clientDashboard.html">Dashboard</a></li>
+      <li><a href="./favorites.html">Favorites</a></li>
+      <li><a href="./bilboard.html">Bilboard</a></li>
+      <li><a href="./about.html">About Us</a></li>
+    </ul>
+  </nav>
+  <form class="search-bar" action="/search" method="GET">
+    <input type="text" name="query" placeholder="Search for listings..." />
+    <button type="submit">Search</button>
+  </form>
+</header>
+
+<main>
+  <div class="dashboard-container">
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <h1>Welcome Back, Tenant!</h1>
+        <p>Manage your housing search and activities</p>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-pic-container" onclick="openProfileModal()">
+          <img src="/static/profile-pic.jpg" alt="Profile Picture" class="profile-pic" id="profilePic">
+        </div>
+        <div class="profile-name" id="usernameDisplay">John Doe</div>
+      </div>
+
+      <div class="nav-section">
+        <h2>Quick Actions</h2>
+        <div class="nav-buttons">
+          <button class="nav-button" onclick="window.location.href='./favorites.html'">
+            <i class="fas fa-heart"></i> Your Favorites
+          </button>
+          <button class="nav-button" onclick="window.location.href='./bilboard.html'">
+            <i class="fas fa-chart-line"></i> Bilboard
+          </button>
+          <button class="nav-button" onclick="showNotifications()">
+            <i class="fas fa-bell"></i> Recent Notifications
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <h2>Account Settings</h2>
+        <ul class="account-links">
+          <li><a href="#" onclick="showProfile()"><i class="fas fa-user"></i> View Profile</a></li>
+          <li><a href="#" onclick="showChangePassword()"><i class="fas fa-key"></i> Change Password</a></li>
+          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+        </ul>
+      </div>
+
+      <div class="upgrade-section">
+        <h3>Want to advance as an Estate Manager?</h3>
+        <button class="upgrade-btn" onclick="showUpgradeForm()">
+          Advance to Estate Manager
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="dashboard-main">
+      <div class="content-section">
+        <div id="response-section">
+          <h2>Dashboard Overview</h2>
+          <p>Welcome to your personalized dashboard. Here you can manage your property searches, favorites, and account settings.</p>
+
+          <div id="profileView" style="display:none;"></div>
+          <div id="passwordView" style="display:none;"></div>
+          <div id="upgradeView" style="display:none;"></div>
+          <div id="notificationsView" style="display:none;"></div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Recommended For You</h2>
+        <div class="listing-container">
+          <article class="listing">
+            <div class="listing-img-container">
+              <img src="../static/image40.jpg" alt="Modern Downtown Apartment" class="listing-img">
+            </div>
+            <h3>Modern Downtown Apartment</h3>
+            <p>2 Bed | 1 Bath | $1,200/mo</p>
+            <div class="listing-footer">
+              <a href="/listing/5" class="details-button">View Details</a>
+              <div class="button-group">
+                <button class="action-button" onclick="toggleLike(this)">
+                  <i class="fas fa-heart"></i> Like
+                </button>
+                <button class="action-button" onclick="addToFavorites(this)">
+                  <i class="fas fa-star"></i> Favorite
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Additional recommended listings would go here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Profile Modal -->
+<div class="profile-modal" id="profileModal" onclick="closeProfileModal()">
+  <div class="profile-modal-content">
+    <img src="" alt="Enlarged Profile Picture" id="modalProfilePic">
+  </div>
+</div>
+
+<script>
+  // Profile Modal Functions
+  function openProfileModal() {
+    const modal = document.getElementById('profileModal');
+    const modalImg = document.getElementById('modalProfilePic');
+    modalImg.src = document.getElementById('profilePic').src;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+  }
+
+  function closeProfileModal() {
+    document.getElementById('profileModal').style.display = 'none';
+    document.body.style.overflow = ''; // Re-enable scrolling
+  }
+
+  // Dashboard View Functions
+  function showProfile() {
+    document.getElementById('response-section').innerHTML = `
+      <div class="profile-form">
+        <h2>Your Profile</h2>
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="JohnDoe">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="john@example.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" value="+1234567890">
+          </div>
+          <div class="form-group">
+            <label for="profilePicture">Profile Picture</label>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+          </div>
+          <button type="submit" class="submit-btn">Update Profile</button>
+        </form>
+      </div>
+    `;
+
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would normally send the data to the server
+      updateProfile();
+    });
+  }
+
+  function updateProfile() {
+    // Simulate API call
+    setTimeout(() => {
+      alert('Profile updated successfully!');
+      document.getElementById('usernameDisplay').textContent =
+              document.getElementById('username').value;
+    }, 500);
+  }
+
+  function showChangePassword() {
+    document.getElementById('response-section').innerHTML = `
+      <div class="profile-form">
+        <h2>Change Password</h2>
+        <form id="passwordForm">
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input type="password" id="currentPassword" name="currentPassword" required>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">New Password (min 6 characters)</label>
+            <input type="password" id="newPassword" name="newPassword" minlength="6" required>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" minlength="6" required>
+          </div>
+          <button type="submit" class="submit-btn">Change Password</button>
+        </form>
+      </div>
+    `;
+
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (newPassword !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      if (newPassword.length < 6) {
+        alert('Password must be at least 6 characters long!');
+        return;
+      }
+
+      // Here you would normally send the data to the server
+      setTimeout(() => {
+        alert('Password changed successfully!');
+      }, 500);
+    });
+  }
+
+  function showUpgradeForm() {
+    document.getElementById('response-section').innerHTML = `
+      <div class="profile-form">
+        <h2>Upgrade to Estate Manager</h2>
+        <form id="upgradeForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="nin">National Identification Number (NIN)</label>
+            <input type="text" id="nin" name="nin" required
+                   pattern="^(CM|CF)[0-9]{12}$"
+                   title="Format: CM/CF followed by 12 digits"
+                   placeholder="CM123456789012">
+          </div>
+
+          <div class="form-group">
+            <label>Upload National ID (2 images required)</label>
+            <div class="file-upload-container">
+              <label class="file-upload-label" for="idPhotos">
+                <i class="fas fa-cloud-upload-alt"></i> Select ID Images
+              </label>
+              <input type="file" id="idPhotos" name="idPhotos" accept="image/*" required multiple
+                     onchange="updateFileLabel('idPhotos', 'idPhotosLabel')">
+              <span id="idPhotosLabel" class="file-upload-status">No files selected</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Passport Photo</label>
+            <div class="file-upload-container">
+              <label class="file-upload-label" for="passportPhoto">
+                <i class="fas fa-cloud-upload-alt"></i> Select Passport Photo
+              </label>
+              <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required
+                     onchange="updateFileLabel('passportPhoto', 'passportPhotoLabel')">
+              <span id="passportPhotoLabel" class="file-upload-status">No file selected</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="districts">Preferred Districts of Operation</label>
+            <select id="districts" name="districts" multiple required>
+              <option value="district1">District 1</option>
+              <option value="district2">District 2</option>
+              <option value="district3">District 3</option>
+            </select>
+            <small class="form-hint">Hold Ctrl/Cmd to select multiple districts</small>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit for Verification</button>
+        </form>
+      </div>
+    `;
+
+    document.getElementById('upgradeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const idPhotos = document.getElementById('idPhotos').files;
+
+      if (idPhotos.length !== 2) {
+        alert('Please upload exactly 2 images for your National ID.');
+        return;
+      }
+
+      // Here you would normally send the data to the server
+      setTimeout(() => {
+        alert('Upgrade request submitted for admin approval!');
+      }, 500);
+    });
+  }
+
+  function updateFileLabel(inputId, labelId) {
+    const input = document.getElementById(inputId);
+    const label = document.getElementById(labelId);
+
+    if (input.files.length > 0) {
+      if (input.files.length === 1) {
+        label.textContent = input.files[0].name;
+      } else {
+        label.textContent = `${input.files.length} files selected`;
+      }
+      label.style.color = '#27ae60'; // Green color for success
+    } else {
+      label.textContent = inputId === 'idPhotos' ? 'No files selected' : 'No file selected';
+      label.style.color = '#666';
+    }
+  }
+
+  function showNotifications() {
+    document.getElementById('response-section').innerHTML = `
+      <div class="notification-container">
+        <h2>Your Notifications</h2>
+        <div class="notification-list">
+          <div class="notification">
+            <div class="notification-icon">
+              <i class="fas fa-tag"></i>
+            </div>
+            <div class="notification-content">
+              <p>Your favorite listing "Modern Apartment" price was reduced!</p>
+              <small>2 hours ago</small>
+            </div>
+          </div>
+          <div class="notification">
+            <div class="notification-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <div class="notification-content">
+              <p>New listings matching your preferences are available</p>
+              <small>1 day ago</small>
+            </div>
+          </div>
+          <div class="notification">
+            <div class="notification-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-content">
+              <p>Your account verification is complete</p>
+              <small>3 days ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Listing interaction functions
+  function toggleLike(button) {
+    const listing = button.closest('.listing');
+    const title = listing.querySelector('h3').textContent;
+
+    // Toggle like state visually
+    button.classList.toggle('liked');
+
+    if (button.classList.contains('liked')) {
+      button.innerHTML = '<i class="fas fa-heart"></i> Liked';
+      alert(`You liked ${title}`);
+    } else {
+      button.innerHTML = '<i class="fas fa-heart"></i> Like';
+      alert(`You unliked ${title}`);
+    }
+
+    // Here you would normally send the like to the server
+  }
+
+  function addToFavorites(button) {
+    const listing = button.closest('.listing');
+    const title = listing.querySelector('h3').textContent;
+
+    // Toggle favorite state visually
+    button.classList.toggle('favorited');
+
+    if (button.classList.contains('favorited')) {
+      button.innerHTML = '<i class="fas fa-star"></i> Favorited';
+      alert(`Added ${title} to your favorites`);
+    } else {
+      button.innerHTML = '<i class="fas fa-star"></i> Favorite';
+      alert(`Removed ${title} from your favorites`);
+    }
+
+    // Here you would normally update favorites on the server
+  }
+</script>
+</body>
+</html>

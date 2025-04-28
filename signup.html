@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup Page</title>
+  <link rel="stylesheet" href="../static/home.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('../static/imagehb1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .signup-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 800px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #2e1a47;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    .row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .input-group,
+    .form-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .styled-input {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    select.styled-input {
+      background-color: #fff;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .button-group button {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button[type="submit"] {
+      background-color: #4a0072;
+      color: #fff;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #6a148e;
+    }
+
+    button[type="button"] {
+      background-color: #9e9e9e;
+      color: #fff;
+    }
+
+    button[type="button"]:hover {
+      background-color: #616161;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="signup-container">
+  <h2>Create Your Account</h2>
+  <form id="signupForm" action="signup_process.php" method="post" enctype="multipart/form-data">
+
+    <div class="row">
+      <div class="input-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" class="styled-input" required maxlength="45" />
+      </div>
+      <div class="input-group">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" class="styled-input" required maxlength="45" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" class="styled-input" required />
+      </div>
+      <div class="input-group">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" class="styled-input" required>
+          <option value="">Select</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Sign Up As</label>
+      <select id="role" name="role" class="styled-input" required onchange="toggleRoleFields()">
+        <option value="tenant">Client / Tenant</option>
+        <option value="landlord">Landlord / Property Manager</option>
+      </select>
+    </div>
+
+    <!-- Tenant Fields -->
+    <div id="tenantFields" class="hidden">
+      <div class="row">
+        <div class="input-group">
+          <label for="emailTenant">Email</label>
+          <input type="email" id="emailTenant" name="email" class="styled-input" />
+        </div>
+        <div class="input-group">
+          <label for="phoneTenant">Phone</label>
+          <input type="tel" id="phoneTenant" name="phone" class="styled-input" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Landlord Fields -->
+    <div id="landlordFields" class="hidden">
+      <div class="row">
+        <div class="input-group">
+          <label for="emailLandlord">Email</label>
+          <input type="email" id="emailLandlord" name="email" class="styled-input" />
+        </div>
+        <div class="input-group">
+          <label for="phoneLandlord">Phone</label>
+          <input type="tel" id="phoneLandlord" name="phone" class="styled-input" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="nin">NIN</label>
+        <input type="text" id="nin" name="nin" class="styled-input" required pattern="^(CM|CF)[0-9]{12}$"
+               title="Format: CM/CF followed by 12 digits" />
+      </div>
+
+      <div class="form-group">
+        <label for="idPhoto">Upload National ID (2 images only)</label>
+        <input type="file" id="idPhoto" name="idPhoto" class="styled-input" accept="image/*" required multiple onchange="validateFileCount(this)" />
+      </div>
+
+      <div class="form-group">
+        <label for="passportPhoto">Upload Passport Photo</label>
+        <input type="file" id="passportPhoto" name="passportPhoto" class="styled-input" accept="image/*" required onchange="previewImage(this)" />
+      </div>
+
+      <div class="form-group">
+        <label for="districts">Districts of Operation</label>
+        <select id="districts" name="districts" class="styled-input" required multiple>
+          <option value="district1">District 1</option>
+          <option value="district2">District 2</option>
+          <option value="district3">District 3</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Preferred Contact Methods</label>
+        <div class="row">
+          <input type="tel" id="whatsapp" name="whatsapp" class="styled-input" placeholder="WhatsApp" required />
+          <input type="tel" id="telegram" name="telegram" class="styled-input" placeholder="Telegram" required />
+          <input type="tel" id="directCall" name="directCall" class="styled-input" placeholder="Direct Call" required />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" class="styled-input" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Set Password</label>
+      <input type="password" id="password" name="password" class="styled-input" required minlength="6" />
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" class="styled-input" required minlength="6" />
+    </div>
+
+    <div class="button-group">
+      <button type="submit">Submit</button>
+      <button type="button" onclick="window.location.href='login.html'">Login</button>
+      <button type="button" onclick="window.history.back()">Back</button>
+    </div>
+  </form>
+</div>
+
+<!-- Image Preview Modal -->
+<div id="imgModal" class="modal" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('imgModal').style.display='none'">&times;</span>
+  <img class="modal-content" id="imgPreview">
+</div>
+
+<script>
+  function toggleRoleFields() {
+    const role = document.getElementById('role').value;
+    document.getElementById('tenantFields').classList.toggle('hidden', role !== 'tenant');
+    document.getElementById('landlordFields').classList.toggle('hidden', role !== 'landlord');
+  }
+
+  function validateFileCount(input) {
+    if (input.files.length !== 2) {
+      alert('Please upload exactly 2 images for your National ID.');
+      input.value = '';
+    }
+  }
+
+  function previewImage(input) {
+    const file = input.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('imgModal').style.display = 'flex';
+        document.getElementById('imgPreview').src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  document.getElementById('signupForm').addEventListener('submit', function(event) {
+    const pass = document.getElementById('password').value;
+    const confirm = document.getElementById('confirmPassword').value;
+    if (pass !== confirm) {
+      alert('Passwords do not match.');
+      event.preventDefault();
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', toggleRoleFields);
+</script>
+</body>
+</html>
